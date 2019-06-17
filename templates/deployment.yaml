@@ -1,0 +1,19 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ include "my-app.fullname" . }}
+  labels:
+    app: {{ .Values.Deployment.appName }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.Deployment.appName }}
+    spec:
+      containers:
+      - name: {{ .Values.Deployment.appName }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag}}
+        ports:
+        - containerPort: 80

@@ -1,0 +1,15 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: ingress
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /
+          backend:
+            serviceName: {{ include "my-app.fullname" . }}-service
+            servicePort: 80
